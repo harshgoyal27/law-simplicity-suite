@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { CheckCircle, X } from "lucide-react";
+import { CheckCircle, X, Star, Shield, Clock, Users } from "lucide-react";
 
 const Pricing = () => {
   const plans = [
@@ -31,7 +31,8 @@ const Pricing = () => {
         "Priority support"
       ],
       popular: false,
-      cta: "Start Free Trial"
+      cta: "Start Free Trial",
+      color: "from-gray-50 to-gray-100"
     },
     {
       name: "Professional",
@@ -58,7 +59,8 @@ const Pricing = () => {
         "White-label options"
       ],
       popular: true,
-      cta: "Start Free Trial"
+      cta: "Start Free Trial",
+      color: "from-primary/5 to-legal-blue-light/20"
     },
     {
       name: "Enterprise",
@@ -85,7 +87,8 @@ const Pricing = () => {
       ],
       notIncluded: [],
       popular: false,
-      cta: "Contact Sales"
+      cta: "Contact Sales",
+      color: "from-trust-navy/5 to-legal-blue-dark/10"
     }
   ];
 
@@ -112,59 +115,84 @@ const Pricing = () => {
     }
   ];
 
+  const features = [
+    { icon: <Shield className="h-6 w-6" />, text: "Bank-level security" },
+    { icon: <Clock className="h-6 w-6" />, text: "24/7 support" },
+    { icon: <Users className="h-6 w-6" />, text: "Unlimited clients" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-muted to-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Enhanced Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-muted via-legal-blue-light/20 to-background"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-5"></div>
+        
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
-                Simple, Transparent Pricing
+            <div className="space-y-6">
+              <h1 className="text-5xl lg:text-6xl font-bold text-foreground">
+                Simple, Transparent 
+                <span className="block bg-gradient-to-r from-primary to-legal-blue-dark bg-clip-text text-transparent">Pricing</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Choose the perfect plan for your law firm. Start with a 15-day free trial, no credit card required.
               </p>
             </div>
             
-            <div className="flex justify-center">
-              <Badge variant="secondary" className="text-sm">
+            <div className="flex justify-center space-x-8">
+              <Badge variant="secondary" className="text-sm bg-white shadow-md">
                 ✨ 20% off when you pay annually
               </Badge>
+              <div className="flex items-center space-x-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-2 text-muted-foreground">
+                    <div className="text-primary">{feature.icon}</div>
+                    <span className="text-sm">{feature.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section className="py-20">
+      {/* Enhanced Pricing Cards */}
+      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'border-primary shadow-xl scale-105' : 'border-border'}`}>
+              <Card key={index} className={`relative group transition-all duration-500 ${plan.popular ? 'border-primary shadow-2xl scale-105 z-10' : 'border-border hover:shadow-xl hover:scale-105'} bg-gradient-to-br ${plan.color} backdrop-blur-sm`}>
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground px-4 py-1">
-                      Most Popular
-                    </Badge>
-                  </div>
+                  <>
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <Badge className="bg-primary text-primary-foreground px-6 py-2 shadow-lg">
+                        Most Popular
+                      </Badge>
+                    </div>
+                    <div className="absolute top-6 right-6">
+                      <Star className="h-6 w-6 text-yellow-400 fill-current" />
+                    </div>
+                  </>
                 )}
                 
-                <CardHeader className="pb-8">
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <CardDescription className="text-base">{plan.description}</CardDescription>
-                  <div className="mt-4">
-                    <div className="flex items-baseline">
-                      <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-                      {plan.price !== "Custom" && (
-                        <span className="text-muted-foreground ml-2">/{plan.period}</span>
+                <CardHeader className="pb-8 relative">
+                  <div className="space-y-4">
+                    <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
+                    <CardDescription className="text-base">{plan.description}</CardDescription>
+                    <div className="space-y-2">
+                      <div className="flex items-baseline space-x-2">
+                        <span className="text-5xl font-bold text-foreground">{plan.price}</span>
+                        {plan.price !== "Custom" && (
+                          <span className="text-muted-foreground">/{plan.period}</span>
+                        )}
+                      </div>
+                      {plan.price === "Custom" && (
+                        <span className="text-muted-foreground">{plan.period}</span>
                       )}
                     </div>
-                    {plan.price === "Custom" && (
-                      <span className="text-muted-foreground">{plan.period}</span>
-                    )}
                   </div>
                 </CardHeader>
 
@@ -186,7 +214,7 @@ const Pricing = () => {
                   </div>
 
                   <Button 
-                    className="w-full" 
+                    className={`w-full transition-all duration-300 ${plan.popular ? 'shadow-lg hover:shadow-xl transform hover:scale-105' : ''}`}
                     variant={plan.popular ? "default" : "outline"}
                     size="lg"
                     asChild
@@ -204,11 +232,11 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-muted">
+      {/* Enhanced FAQ Section */}
+      <section className="py-20 bg-gradient-to-br from-muted/50 to-legal-blue-light/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-muted-foreground">
@@ -218,11 +246,11 @@ const Pricing = () => {
 
           <div className="grid grid-cols-1 gap-6">
             {faqs.map((faq, index) => (
-              <Card key={index}>
+              <Card key={index} className="bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-300 hover:shadow-lg">
                 <CardContent className="pt-6">
                   <div className="space-y-3">
                     <h3 className="text-lg font-semibold text-foreground">{faq.question}</h3>
-                    <p className="text-muted-foreground">{faq.answer}</p>
+                    <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -231,17 +259,20 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Enhanced CTA Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-legal-blue to-trust-navy"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-10"></div>
+        
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground">
+            <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-primary-foreground/90">
+            <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
               Join thousands of legal professionals who trust Law Simplicity with their practice management.
             </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" asChild>
               <Link to="/demo">Start Your 15-Day Free Trial</Link>
             </Button>
           </div>
