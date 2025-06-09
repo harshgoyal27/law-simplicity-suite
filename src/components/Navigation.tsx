@@ -32,7 +32,7 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium hover:bg-accent/50 px-3 py-2 rounded-md"
               >
                 {item.name}
               </Link>
@@ -41,7 +41,7 @@ const Navigation = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" asChild>
+            <Button variant="outline" asChild>
               <Link to="/login">Sign In</Link>
             </Button>
             <Button asChild>
@@ -70,14 +70,14 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="block px-3 py-2 text-foreground/80 hover:text-primary hover:bg-accent/50 transition-colors duration-200 rounded-md"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
               <div className="px-3 py-2 space-y-2">
-                <Button variant="ghost" className="w-full justify-start" asChild>
+                <Button variant="outline" className="w-full justify-start" asChild>
                   <Link to="/login" onClick={() => setIsOpen(false)}>Sign In</Link>
                 </Button>
                 <Button className="w-full" asChild>
