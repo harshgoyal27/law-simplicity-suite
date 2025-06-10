@@ -12,6 +12,11 @@ import BookDemo from "./pages/BookDemo";
 import SignIn from "./pages/SignIn";
 import NotFound from "./pages/NotFound";
 
+// Product Pages
+import PracticeManagement from "./pages/products/PracticeManagement";
+import ClientIntake from "./pages/products/ClientIntake";
+import LegalAccounting from "./pages/products/LegalAccounting";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -28,6 +33,15 @@ const App = () => (
           <Route path="/demo" element={<BookDemo />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/signin" element={<SignIn />} />
+          
+          {/* Product Pages */}
+          <Route path="/products/practice-management" element={<PracticeManagement />} />
+          <Route path="/products/client-intake" element={<ClientIntake />} />
+          <Route path="/products/legal-accounting" element={<LegalAccounting />} />
+          
+          {/* Placeholder routes for other products - will redirect to main products page for now */}
+          <Route path="/products/*" element={<Products />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
