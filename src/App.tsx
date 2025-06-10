@@ -16,6 +16,11 @@ import NotFound from "./pages/NotFound";
 import PracticeManagement from "./pages/products/PracticeManagement";
 import ClientIntake from "./pages/products/ClientIntake";
 import LegalAccounting from "./pages/products/LegalAccounting";
+import DocumentAutomation from "./pages/products/DocumentAutomation";
+import Integrations from "./pages/products/Integrations";
+import Calendaring from "./pages/products/Calendaring";
+import CaseManagement from "./pages/products/CaseManagement";
+import LegalBilling from "./pages/products/LegalBilling";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +43,11 @@ const App = () => (
           <Route path="/products/practice-management" element={<PracticeManagement />} />
           <Route path="/products/client-intake" element={<ClientIntake />} />
           <Route path="/products/legal-accounting" element={<LegalAccounting />} />
+          <Route path="/products/document-automation" element={<DocumentAutomation />} />
+          <Route path="/products/integrations" element={<Integrations />} />
+          <Route path="/products/calendaring" element={<Calendaring />} />
+          <Route path="/products/case-management" element={<CaseManagement />} />
+          <Route path="/products/legal-billing" element={<LegalBilling />} />
           
           {/* Placeholder routes for other products - will redirect to main products page for now */}
           <Route path="/products/*" element={<Products />} />
