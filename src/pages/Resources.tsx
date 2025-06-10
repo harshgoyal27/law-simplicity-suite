@@ -1,72 +1,110 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { BookOpen, Download, Video, Users, Clock, ArrowRight, Star, Calendar, FileText } from "lucide-react";
+import LiveChat from "@/components/LiveChat";
+import { BookOpen, Download, Video, Users, Clock, ArrowRight, Star, Calendar, FileText, TrendingUp, Award, Lightbulb } from "lucide-react";
 
 const Resources = () => {
   const featuredArticles = [
     {
-      title: "Complete Guide to Legal Practice Management",
-      description: "Everything you need to know about modernizing your law firm's operations and increasing efficiency.",
+      title: "AI-Powered Legal Research: The Future is Here",
+      description: "Discover how artificial intelligence is revolutionizing legal research and document review, making lawyers 40% more efficient.",
+      category: "AI & Technology",
+      readTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      featured: true,
+      trending: true,
+      author: "Dr. Sarah Chen, Legal Tech Expert"
+    },
+    {
+      title: "Complete Guide to Legal Practice Management in 2024",
+      description: "Everything you need to know about modernizing your law firm's operations and increasing efficiency in the digital age.",
       category: "Practice Management",
       readTime: "12 min read",
       image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: true
+      featured: false,
+      trending: false,
+      author: "Michael Rodriguez, Managing Partner"
     },
     {
-      title: "AI in Legal Practice: Opportunities and Challenges",
-      description: "Explore how artificial intelligence is transforming the legal industry and what it means for your practice.",
-      category: "Technology",
-      readTime: "8 min read",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: false
-    },
-    {
-      title: "Client Communication Best Practices for Lawyers",
-      description: "Learn how to improve client satisfaction and retention through effective communication strategies.",
+      title: "Client Communication Strategies That Increase Retention by 60%",
+      description: "Learn proven communication strategies that keep clients satisfied and coming back, backed by real case studies.",
       category: "Client Relations",
       readTime: "6 min read",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: false
+      featured: false,
+      trending: true,
+      author: "Jennifer Liu, Client Success Director"
+    },
+    {
+      title: "Cybersecurity for Law Firms: Essential 2024 Checklist",
+      description: "Protect your firm and client data with this comprehensive cybersecurity guide tailored for legal professionals.",
+      category: "Security",
+      readTime: "10 min read",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      featured: false,
+      trending: false,
+      author: "David Park, Cybersecurity Specialist"
     }
   ];
 
   const resources = [
     {
       icon: <BookOpen className="h-6 w-6" />,
-      title: "Legal Practice Guides",
-      description: "Comprehensive guides covering all aspects of modern legal practice management.",
+      title: "Practice Management Guides",
+      description: "Comprehensive guides covering all aspects of modern legal practice management and optimization.",
       count: "25+ guides",
       type: "Guide",
-      color: "from-blue-50 to-blue-100"
+      color: "from-blue-50 to-blue-100",
+      popular: true
     },
     {
       icon: <Download className="h-6 w-6" />,
-      title: "Templates & Forms",
-      description: "Ready-to-use legal templates, forms, and documents to streamline your workflow.",
+      title: "Legal Templates & Forms",
+      description: "Ready-to-use legal templates, forms, and documents to streamline your workflow and save time.",
       count: "50+ templates",
       type: "Template",
-      color: "from-green-50 to-green-100"
+      color: "from-green-50 to-green-100",
+      popular: true
     },
     {
       icon: <Video className="h-6 w-6" />,
-      title: "Video Tutorials",
-      description: "Step-by-step video tutorials to help you master Law Simplicity features.",
+      title: "Video Tutorials & Masterclasses",
+      description: "Step-by-step video tutorials and masterclasses to help you master Law Simplicity features.",
       count: "30+ videos",
       type: "Video",
-      color: "from-purple-50 to-purple-100"
+      color: "from-purple-50 to-purple-100",
+      popular: false
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: "Webinars & Events",
-      description: "Join live webinars and events featuring legal technology experts and practitioners.",
+      title: "Webinars & Live Events",
+      description: "Join live webinars and events featuring legal technology experts and industry practitioners.",
       count: "Weekly events",
       type: "Event",
-      color: "from-orange-50 to-orange-100"
+      color: "from-orange-50 to-orange-100",
+      popular: false
+    },
+    {
+      icon: <Lightbulb className="h-6 w-6" />,
+      title: "Industry Insights & Trends",
+      description: "Stay ahead with the latest legal industry trends, market insights, and innovation reports.",
+      count: "Monthly reports",
+      type: "Report",
+      color: "from-yellow-50 to-yellow-100",
+      popular: false
+    },
+    {
+      icon: <Award className="h-6 w-6" />,
+      title: "Case Studies & Success Stories",
+      description: "Real-world examples of how law firms have transformed their practice with Law Simplicity.",
+      count: "15+ case studies",
+      type: "Case Study",
+      color: "from-pink-50 to-pink-100",
+      popular: true
     }
   ];
 
@@ -135,6 +173,7 @@ const Resources = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <LiveChat />
 
       {/* Enhanced Hero Section */}
       <section className="relative py-20 overflow-hidden">
@@ -156,12 +195,18 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Enhanced Resource Categories */}
+      {/* Enhanced Resource Categories with Popular Badges */}
       <section className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {resources.map((resource, index) => (
-              <Card key={index} className={`group hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer bg-gradient-to-br ${resource.color} border-0`}>
+              <Card key={index} className={`group hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer bg-gradient-to-br ${resource.color} border-0 relative`}>
+                {resource.popular && (
+                  <Badge className="absolute -top-2 -right-2 bg-primary text-white z-10">
+                    <Star className="h-3 w-3 mr-1" />
+                    Popular
+                  </Badge>
+                )}
                 <CardHeader className="text-center">
                   <div className="mx-auto w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
                     {resource.icon}
@@ -178,21 +223,27 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Enhanced Featured Articles */}
+      {/* Enhanced Featured Articles with Author Info and Trending Badges */}
       <section className="py-20 bg-gradient-to-br from-muted/50 to-legal-blue-light/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
-              Featured Articles
+              Featured Articles & Insights
             </h2>
             <p className="text-xl text-muted-foreground">
-              Latest insights and best practices for legal professionals.
+              Latest insights and best practices from legal technology experts.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredArticles.map((article, index) => (
-              <Card key={index} className={`group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 ${article.featured ? 'md:col-span-2 md:row-span-1' : ''}`}>
+              <Card key={index} className={`group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 ${article.featured ? 'md:col-span-2 lg:col-span-2' : ''} relative`}>
+                {article.trending && (
+                  <Badge className="absolute top-4 left-4 bg-red-500 text-white z-10 animate-pulse">
+                    <TrendingUp className="h-3 w-3 mr-1" />
+                    Trending
+                  </Badge>
+                )}
                 <div className={`overflow-hidden ${article.featured ? 'aspect-[2/1]' : 'aspect-video'}`}>
                   <img 
                     src={article.image} 
@@ -216,6 +267,7 @@ const Resources = () => {
                   </div>
                   <CardTitle className={`leading-tight ${article.featured ? 'text-2xl' : 'text-xl'}`}>{article.title}</CardTitle>
                   <CardDescription className="leading-relaxed">{article.description}</CardDescription>
+                  <p className="text-sm text-muted-foreground mt-2">By {article.author}</p>
                 </CardHeader>
                 <CardContent>
                   <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary/80 group-hover:translate-x-2 transition-transform">

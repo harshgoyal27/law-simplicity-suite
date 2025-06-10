@@ -1,10 +1,12 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import LiveChat from "@/components/LiveChat";
+import ComplianceBadges from "@/components/ComplianceBadges";
+import InteractiveDemo from "@/components/InteractiveDemo";
 import { CheckCircle, Clock, Shield, Users, Zap, BarChart, Star, Award, TrendingUp } from "lucide-react";
 
 const Index = () => {
@@ -75,6 +77,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <LiveChat />
 
       {/* Hero Section with Background Image */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
@@ -154,6 +157,36 @@ const Index = () => {
               <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-white to-legal-blue-light rounded-full opacity-60 animate-pulse"></div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Enhanced Compliance & Security Section */}
+      <section className="py-16 bg-gradient-to-b from-background to-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+              Enterprise-Grade Security & Compliance
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Your data and client information are protected by the highest security standards in the industry.
+            </p>
+          </div>
+          <ComplianceBadges />
+        </div>
+      </section>
+
+      {/* Interactive Product Demo Section */}
+      <section className="py-20 bg-gradient-to-br from-muted/50 to-legal-blue-light/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
+              See Law Simplicity in Action
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore our platform with this interactive demo and see how it can transform your legal practice.
+            </p>
+          </div>
+          <InteractiveDemo />
         </div>
       </section>
 
